@@ -1,5 +1,5 @@
 # hass-petkit-feeder
-This is a work in progress but wanted to get it out since I have it working
+This is a work in progress but wanted to get it out since I have it working. This is how to get basic sensors at this point in time from PetKit Feeders into Home Assistant using the command line sensor and parsing out the JSON response with Template Sensors. I Might work on a custom component but someone else is free to take what i've done and go from there. 
 
 # SETUP
 1) Follow the instructions to get the X-Session ID from the app found here: https://github.com/elfive/homebridge-petkit-feeder-mini
