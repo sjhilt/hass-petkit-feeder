@@ -8,4 +8,4 @@ This is a work in progress but wanted to get it out since I have it working
 4) Edit your configuration Yaml with the data from `configuration.yaml` in this repo 
 5) Restart HASSIO 
 
-
+Other things to note, the full json is stored, so you can get the feeding information, like when the next feeding is, how much will be dispenced and create your own sensors for those. These are pretty easy to do and I will likely add them in the near future to the yaml example. 
