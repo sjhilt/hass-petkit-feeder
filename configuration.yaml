@@ -1,0 +1,41 @@
+sensor:
+  - platform: command_line
+    name: PetKit Feeder
+    scan_interval: 10
+    value_template: "{{ value_json['result']['state']['runtime'] }}"
+    json_attributes:
+      - result
+      - state
+    command: "python3 /config/scripts/petkit_hass.py"
+  - platform: template
+    sensors: 
+      petkit_feeder_level:
+        friendly_name: "PetKit Feeder Food Level"  
+        entity_id: sensor.petkit_feeder
+        value_template: >
+          {% if state_attr('sensor.petkit_feeder', 'result')['state']['food']| int == 1 %}
+            Full
+          {% elif state_attr('sensor.petkit_feeder', 'result')['state']['food']| int == 0 %} 
+            Empty
+          {% else %}
+            unknown
+          {% endif %}
+  - platform: template
+    sensors: 
+      petkit_feeding_status:
+        friendly_name: "PetKit Feeder Feeding"  
+        entity_id: sensor.petkit_feeder
+        value_template: > 
+          {% if state_attr('sensor.petkit_feeder', 'result')['state']['feeding']| int == 1 %}
+            On
+          {% elif state_attr('sensor.petkit_feeder', 'result')['state']['feeding']| int == 0 %} 
+            Off
+          {% else %}
+            unknown
+          {% endif %}
+  - platform: template
+    sensors: 
+      petkit_desiccant_days:
+        friendly_name: "PetKit Feeder Desiccant"  
+        entity_id: sensor.petkit_feeder
+        value_template: "{{ state_attr('sensor.petkit_feeder', 'result')['state']['desiccantLeftDays']}}"
